@@ -3,7 +3,7 @@
 
 #include "setup.h"
 
-#define CORE0A_CONTROL_FREQ 100  // Hz
+#define CORE0A_CONTROL_FREQ 200  // Hz
 
 // Wi-Fi 設定
 const char* ssid = "asus24";        // << ご自身のWi-Fi SSID に変更 >>
@@ -82,13 +82,16 @@ void Core0a_loop() {
                         JsonObject cmd = commandJsonDoc["cmd"].as<JsonObject>();
 
                         if (cmd.containsKey("move_speed")) {
-                              move_dir = cmd["move_speed"];
+                              move_speed = cmd["move_speed"];
                         }
                         if (cmd.containsKey("move_dir")) {
-                              move_speed = cmd["move_dir"];
+                              move_dir = cmd["move_dir"];
                         }
                         if (cmd.containsKey("face_angle")) {
                               face_angle = cmd["face_angle"];
+                        }
+                        if (cmd.containsKey("vision_own_dir")) {
+                              vision_own_dir = cmd["vision_own_dir"];
                         }
                         if (cmd.containsKey("stop")) {
                               stop = cmd["stop"];

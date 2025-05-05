@@ -11,18 +11,16 @@ void Core1a_setup() {
 
 void Core1a_loop() {
       // UART送信
-      const uint8_t send_byte_num = 10;
+      const uint8_t send_byte_num = 8;
       uint8_t send_byte[send_byte_num];
       send_byte[0] = 0xFF;
       send_byte[1] = yaw / 2 + 90;
-      send_byte[2] = ir.GetDir() / 2 + 90;
-      send_byte[3] = ir.GetDis();
-      send_byte[4] = move_dir / 2 + 90;
-      send_byte[5] = move_speed * 100;
-      send_byte[6] = face_angle / 2 + 90;
-      send_byte[7] = vision_own_dir / 2 + 90;
-      send_byte[8] = (stop << 5) | (do_dribble << 4) | uint8_t(kick * 0.1);
-      send_byte[9] = 0xAA;
+      send_byte[2] = move_dir / 2 + 90;
+      send_byte[3] = move_speed * 100;
+      send_byte[4] = face_angle / 2 + 90;
+      send_byte[5] = vision_own_dir / 2 + 90;
+      send_byte[6] = (stop << 5) | (do_dribble << 4) | uint8_t(kick * 0.1);
+      send_byte[7] = 0xAA;
       Serial2.write(send_byte, send_byte_num);
 
       static const uint8_t HEADER = 0xFF;   // ヘッダ
@@ -43,8 +41,8 @@ void Core1a_loop() {
                   if (recv_byte == FOOTER) {
                         do_rotate = (recv_data[0]) & 1;
                         is_on_line = (recv_data[0] >> 1) & 1;
-                        is_hold_ball_front = (recv_data[0] >> 2) & 1;
-                        is_hold_ball_back = (recv_data[0] >> 3) & 1;
+                        is_hold_ball_back = (recv_data[0] >> 2) & 1;
+                        is_hold_ball_front = (recv_data[0] >> 3) & 1;
                         voltage = recv_data[1] / 20.00;
                         moving_dir = recv_data[2] * 2 - 180;
                         moving_speed = recv_data[3] * 0.01;
