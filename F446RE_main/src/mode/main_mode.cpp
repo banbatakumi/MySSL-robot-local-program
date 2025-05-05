@@ -66,10 +66,10 @@ void Mode::MainMode() {
             if (robot->info.Esp32.Wifi.stop) {
                   robot->motor.Drive(0, 0, 0, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
             } else {
-                  robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 5, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
+                  robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
             }
-            if (robot->info.Esp32.Wifi.do_kick) {
-                  robot->kicker.Kick();
+            if (robot->info.Esp32.Wifi.kick) {
+                  robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
             }
             if (robot->info.Esp32.Wifi.do_dribble) {
                   robot->dribbler_front.Hold(HOLD_MAX_POWER);
