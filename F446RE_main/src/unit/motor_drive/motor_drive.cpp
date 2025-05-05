@@ -62,7 +62,14 @@ void MotorDrive::Drive(int16_t target_move_dir, float target_move_speed, float m
       float vel_x = move_speed * MyMath::cosDeg(target_move_dir);
       float vel_y = move_speed * MyMath::sinDeg(target_move_dir);
 
-      pid.Compute(*vision_yaw_, rotation_dir);  // 姿勢制御用PID
+      if (*vision_yaw_ != pre_vision_yaw_) {
+            corrected_yaw_ = *vision_yaw_;
+            pre_yaw_ = *yaw_;
+      } else {
+            corrected_yaw_ = *yaw_ - pre_yaw_ + pre_vision_yaw_;
+      }
+      pre_vision_yaw_ = *vision_yaw_;
+      pid.Compute(corrected_yaw_, rotation_dir);  // 姿勢制御用PID
       for (uint8_t i = 0; i < MOTOR_QTY; i++) {
             float robot_rotation_speed = pid.Get();
             if (abs(robot_rotation_speed) > rotation_speed && rotation_speed != 0) robot_rotation_speed = rotation_speed * (abs(robot_rotation_speed) / robot_rotation_speed);

@@ -380,8 +380,9 @@ void Robot::Esp32Uart() {
                         info.Esp32.Wifi.face_angle = recv_data[3] * 2 - 180;
                         info.Esp32.Wifi.vision_own_dir = recv_data[4] * 2 - 180;
                         info.Esp32.Wifi.kick = (recv_data[5] & 0b00001111 * 10);
-                        info.Esp32.Wifi.do_dribble = (recv_data[5] >> 4) & 1;
-                        info.Esp32.Wifi.stop = (recv_data[5] >> 5) & 1;
+                        info.Esp32.Wifi.face_axis = (recv_data[5] >> 4) & 0b00000011;
+                        info.Esp32.Wifi.do_dribble = (recv_data[5] >> 6) & 1;
+                        info.Esp32.Wifi.stop = (recv_data[5] >> 7) & 1;
                   }
                   index = 0;
             } else {

@@ -58,7 +58,10 @@ class MotorDrive {
 
       PID pid;
       int16_t *yaw_;
+      int16_t pre_yaw_;
       int16_t *vision_yaw_;
+      int16_t pre_vision_yaw_;
+      int16_t corrected_yaw_;
       float *motor_abs_rad_s_;
       float motor_rad_s_[MOTOR_QTY];
 
