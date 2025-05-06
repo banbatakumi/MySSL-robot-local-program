@@ -3,7 +3,7 @@
 
 #include "setup.h"
 
-#define CORE0A_CONTROL_FREQ 200  // Hz
+#define CORE0A_CONTROL_FREQ 250  // Hz
 
 // Wi-Fi 設定
 const char* ssid = "asus24";        // << ご自身のWi-Fi SSID に変更 >>
@@ -29,16 +29,6 @@ StaticJsonDocument<256> commandJsonDoc;  // 指令 JSON のバッファサイズ
 StaticJsonDocument<256> sensorJsonDoc;  // センサー JSON のバッファサイズに応じて調整
 char sensorPacket[256];                 // センサーデータの最大サイズに応じて調整
 
-// ロボットの状態や指令値を保持する変数
-float linearVelocity = 0.0;
-float angularVelocity = 0.0;
-bool kickCommand = false;
-bool dribbleCommand = false;
-
-// センサーデータ保持変数 (例)
-long encoderCounts = 0;
-float imuYaw = 0.0;
-
 void Core0a_setup() {  // アクセスポイントモード起動
       WiFi.begin(ssid, password);
       while (WiFi.status() != WL_CONNECTED) {
@@ -48,12 +38,6 @@ void Core0a_setup() {  // アクセスポイントモード起動
       Serial.println("WiFi connected");
       Serial.print("ESP32 IP address: ");
       Serial.println(WiFi.localIP());  // この IP を PC Controller の ESP32_IP に設定
-
-      // 時刻同期 (タイムスタンプ送信のために行うと良い)
-      // configTime(gmtOffset_sec, daylightOffset_sec, ntpServer); // NTPサーバーから時刻を取得
-      // setenv("TZ", "JST-9", 1); // タイムゾーン設定 (例: 日本標準時)
-      // tzset();
-      // Serial.println("Time initialized");
 
       // UDP 指令待ち受け開始
       udp.begin(commandListenPort);
@@ -134,9 +118,11 @@ void Core0a_loop() {
       // --- センサーデータの構造化 ---
       sensorJsonDoc.clear();  // ドキュメントをクリア
       sensorJsonDoc["type"] = "sensor_data";
-      sensorJsonDoc["ts"] = currentTime;  // ESP32側のタイムスタンプ
+      // sensorJsonDoc["ts"] = currentTime;  // ESP32側のタイムスタンプ
 
-      // エンコーダーデータを追加 (例)
+      // センサーデータの格納
+      sensorJsonDoc["voltage"] = voltage;
+
       JsonObject photo = sensorJsonDoc.createNestedObject("photo");
       photo["front"] = is_hold_ball_front;
       photo["back"] = is_hold_ball_back;
