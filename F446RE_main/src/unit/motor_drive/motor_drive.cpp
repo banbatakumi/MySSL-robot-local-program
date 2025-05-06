@@ -70,7 +70,10 @@ void MotorDrive::Drive(int16_t target_move_dir, float target_move_speed, float m
       }
       corrected_yaw_ = MyMath::NormalizeDeg180(corrected_yaw_);
       pre_vision_yaw_ = *vision_yaw_;
-      if (MyMath::GapDeg(corrected_yaw_, rotation_dir) < 180 && abs(corrected_yaw_ - rotation_dir) > 180) corrected_yaw_ = MyMath::NormalizeDeg(corrected_yaw_);
+      if (MyMath::GapDeg(corrected_yaw_, rotation_dir) < 180 && abs(corrected_yaw_ - rotation_dir) > 180) {
+            corrected_yaw_ = MyMath::NormalizeDeg(corrected_yaw_);
+            rotation_dir = MyMath::NormalizeDeg(rotation_dir);
+      }
       pid.Compute(corrected_yaw_, rotation_dir);  // 姿勢制御用PID
       for (uint8_t i = 0; i < MOTOR_QTY; i++) {
             float robot_rotation_speed = pid.Get();
