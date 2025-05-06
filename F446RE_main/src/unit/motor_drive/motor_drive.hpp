@@ -27,7 +27,7 @@ class MotorDrive {
                  PwmSingleOut *motor2a, PwmSingleOut *motor2b,
                  PwmSingleOut *motor3a, PwmSingleOut *motor3b,
                  PwmSingleOut *motor4a, PwmSingleOut *motor4b,
-                 int16_t *yaw, float *motor_abs_rad_s_);
+                 int16_t *yaw, int16_t *vision_yaw, float *motor_abs_rad_s_);
 
 #define CENTER 0
 #define FRONT 1
@@ -58,6 +58,10 @@ class MotorDrive {
 
       PID pid;
       int16_t *yaw_;
+      int16_t pre_yaw_;
+      int16_t *vision_yaw_;
+      int16_t pre_vision_yaw_;
+      int16_t corrected_yaw_;
       float *motor_abs_rad_s_;
       float motor_rad_s_[MOTOR_QTY];
 

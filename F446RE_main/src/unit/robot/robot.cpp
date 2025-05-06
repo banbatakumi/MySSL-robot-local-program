@@ -358,39 +358,6 @@ void Robot::CamUart() {
 
 void Robot::Esp32Uart() {
       while (serial5.available()) {
-#ifdef bluetooth
-            static const uint8_t HEADER = 0xFF;   // ヘッダ
-            static const uint8_t FOOTER = 0xAA;   // フッタ
-            static const uint8_t data_size = 4;   // データのサイズ
-            static uint8_t index = 0;             // 受信したデータのインデックスカウンター
-            static uint8_t recv_data[data_size];  // 受信したデータ
-            static uint8_t recv_byte;
-
-            recv_byte = serial5.read();
-            if (index == 0) {
-                  if (recv_byte == HEADER) {
-                        index++;
-                  } else {
-                        index = 0;
-                  }
-            } else if (index == (data_size + 1)) {
-                  if (recv_byte == FOOTER) {
-                        info.Esp32.top_yaw = recv_data[0] * 2 - 180;
-                        info.Esp32.ir_dir = recv_data[1] * 2 - 180;
-                        info.Esp32.ir_dis = recv_data[2];
-                        info.Esp32.Bluetooth.is_connected = recv_data[3] & 1;
-                        info.Esp32.Bluetooth.Ally.is_moving = (recv_data[3] >> 1) & 1;
-                        info.Esp32.Bluetooth.Ally.is_defence = (recv_data[3] >> 2) & 1;
-                        info.Esp32.Bluetooth.Ally.is_holding_ball = (recv_data[3] >> 3) & 1;
-                        info.Esp32.Bluetooth.Ally.can_get_pass = (recv_data[3] >> 4) & 1;
-                  }
-                  index = 0;
-            } else {
-                  recv_data[index - 1] = recv_byte;
-                  index++;
-            }
-#endif
-#ifdef wifi
             static const uint8_t HEADER = 0xFF;   // ヘッダ
             static const uint8_t FOOTER = 0xAA;   // フッタ
             static const uint8_t data_size = 7;   // データのサイズ
@@ -408,54 +375,40 @@ void Robot::Esp32Uart() {
             } else if (index == (data_size + 1)) {
                   if (recv_byte == FOOTER) {
                         info.Esp32.top_yaw = recv_data[0] * 2 - 180;
-                        info.Esp32.ir_dir = recv_data[1] * 2 - 180;
-                        info.Esp32.ir_dis = recv_data[2];
-                        info.Esp32.Wifi.move_dir = recv_data[3] * 2 - 180;
-                        info.Esp32.Wifi.move_speed = recv_data[4] * 0.01;
-                        info.Esp32.Wifi.face_angle = recv_data[5] * 2 - 180;
-                        info.Esp32.Wifi.do_kick = recv_data[6] & 1;
-                        info.Esp32.Wifi.do_dribble = (recv_data[6] >> 1) & 1;
-                        info.Esp32.Wifi.stop = (recv_data[6] >> 2) & 1;
+                        info.Esp32.Wifi.move_dir = recv_data[1] * 2 - 180;
+                        info.Esp32.Wifi.move_speed = recv_data[2] * 0.01;
+                        info.Esp32.Wifi.face_angle = recv_data[3] * 2 - 180;
+                        info.Esp32.Wifi.face_speed = recv_data[4] * 0.1;
+                        info.Esp32.Wifi.vision_own_dir = recv_data[5] * 2 - 180;
+                        info.Esp32.Wifi.kick = (recv_data[6] & 0b00001111) * 10;
+                        info.Esp32.Wifi.face_axis = (recv_data[6] >> 4) & 0b00000011;
+                        info.Esp32.Wifi.do_dribble = (recv_data[6] >> 6) & 1;
+                        info.Esp32.Wifi.stop = (recv_data[6] >> 7) & 1;
                   }
                   index = 0;
             } else {
                   recv_data[index - 1] = recv_byte;
                   index++;
             }
-#endif
       }
 
       if (esp32_send_interval_timer.read_us() >= ESP32_SEND_PERIOD_US) {
-#ifdef bluetooth
-            static uint8_t send_data;
-            if (abs(info.Imu.yaw) > 40 && info.mode == 0) info.Esp32.do_rotate = 0;
-            send_data = (info.Esp32.Bluetooth.Me.can_get_pass << 5) | (info.Esp32.Bluetooth.Me.is_holding_ball << 4) | (info.Esp32.Bluetooth.Me.is_defence << 3) | (info.Esp32.Bluetooth.Me.is_moving << 2) | (info.Esp32.on_ir_led << 1) | info.Esp32.do_rotate;
-            serial5.write(send_data);
-#endif
-#ifdef wifi
             static const uint8_t HEADER = 0xFF;  // ヘッダ
             static const uint8_t FOOTER = 0xAA;  // ヘッダ
-            static const uint8_t data_size = 17;
+            static const uint8_t data_size = 11;
             uint8_t send_data[data_size];
             send_data[0] = HEADER;
-            send_data[1] = (info.Catch.is_front << 4) | (info.Catch.is_back << 3) | (info.Line.is_on_line << 2) | (info.Esp32.on_ir_led << 1) | info.Esp32.do_rotate;
+            send_data[1] = (info.Catch.is_front << 3) | (info.Catch.is_back << 2) | (info.Line.is_on_line << 1) | info.Esp32.do_rotate;
             send_data[2] = info.voltage * 20;
             send_data[3] = motor.moving_dir * 0.5 + 90;
             send_data[4] = motor.moving_speed * 100;
-            send_data[5] = info.Cam.own_x * 0.5 + 127;
-            send_data[6] = info.Cam.own_y * 0.5 + 127;
-            send_data[7] = info.Imu.yaw * 0.5 + 90;
-            send_data[8] = info.Cam.ball_dir * 0.5 + 90;
-            send_data[9] = info.Cam.ball_dis;
-            send_data[10] = info.Cam.yellow_goal_dir * 0.5 + 90;
-            send_data[11] = info.Cam.yellow_goal_dis;
-            send_data[12] = info.Cam.blue_goal_dir * 0.5 + 90;
-            send_data[13] = info.Cam.blue_goal_dis;
-            send_data[14] = info.Line.inside_dir * 0.5 + 90;
-            send_data[15] = info.Line.depth;
-            send_data[16] = FOOTER;
+            send_data[5] = info.Imu.yaw * 0.5 + 90;
+            send_data[6] = info.Cam.ball_dir * 0.5 + 90;
+            send_data[7] = info.Cam.ball_dis;
+            send_data[8] = info.Line.inside_dir * 0.5 + 90;
+            send_data[9] = info.Line.depth;
+            send_data[10] = FOOTER;
             serial5.write(send_data, data_size);
-#endif
             esp32_send_interval_timer.reset();
       }
 }

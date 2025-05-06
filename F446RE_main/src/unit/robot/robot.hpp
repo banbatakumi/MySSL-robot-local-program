@@ -94,30 +94,20 @@ struct RobotInfo {
 
       struct {
             int16_t top_yaw;
-            int16_t ir_dir;
-            uint8_t ir_dis;
 
             bool do_rotate;
-            bool on_ir_led;
-            struct {
-                  bool is_connected;
-
-                  struct {
-                        bool is_moving;
-                        bool is_holding_ball;
-                        bool is_defence;
-                        bool can_get_pass;
-                  } Me, Ally;
-            } Bluetooth;
             struct {
                   bool is_connected;
 
                   int16_t move_dir;
                   float move_speed;
                   int16_t face_angle;
-                  bool do_kick;
+                  float face_speed;
+                  uint8_t face_axis;
+                  uint8_t kick;
                   bool do_dribble;
                   bool stop;
+                  int16_t vision_own_dir;
             } Wifi;
       } Esp32;
 };
@@ -148,7 +138,7 @@ class Robot {
       DigitalOut kicker_charge = DigitalOut(KICKER_CHARGE_GPIO_Port, KICKER_CHARGE_Pin);
       DigitalOut kicker_kick = DigitalOut(KICKER_KICK_GPIO_Port, KICKER_KICK_Pin);
 
-      MotorDrive motor = MotorDrive(&motor1a, &motor1b, &motor2a, &motor2b, &motor3a, &motor3b, &motor4a, &motor4b, &info.Imu.yaw, info.motor_rad_s);
+      MotorDrive motor = MotorDrive(&motor1a, &motor1b, &motor2a, &motor2b, &motor3a, &motor3b, &motor4a, &motor4b, &info.Imu.yaw, &info.Esp32.Wifi.vision_own_dir, info.motor_rad_s);
       DribblerDrive dribbler_front = DribblerDrive(&dribbler_front_a, &dribbler_front_b);
       DribblerDrive dribbler_back = DribblerDrive(&dribbler_back_a, &dribbler_back_b);
       Kicker kicker = Kicker(&kicker_charge, &kicker_kick);

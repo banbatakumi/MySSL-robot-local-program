@@ -4,9 +4,10 @@ MotorDrive::MotorDrive(PwmSingleOut *motor1a, PwmSingleOut *motor1b,
                        PwmSingleOut *motor2a, PwmSingleOut *motor2b,
                        PwmSingleOut *motor3a, PwmSingleOut *motor3b,
                        PwmSingleOut *motor4a, PwmSingleOut *motor4b,
-                       int16_t *yaw, float *motor_abs_rad_s)
+                       int16_t *yaw, int16_t *vision_yaw, float *motor_abs_rad_s)
     : motor1a_(motor1a), motor1b_(motor1b), motor2a_(motor2a), motor2b_(motor2b), motor3a_(motor3a), motor3b_(motor3b), motor4a_(motor4a), motor4b_(motor4b) {
       this->yaw_ = yaw;
+      this->vision_yaw_ = vision_yaw;
       this->motor_abs_rad_s_ = motor_abs_rad_s;
       for (uint8_t i = 0; i < MOTOR_QTY; i++) {
             motor_ave[i].SetLength(MOVING_AVE_NUM);
@@ -61,7 +62,19 @@ void MotorDrive::Drive(int16_t target_move_dir, float target_move_speed, float m
       float vel_x = move_speed * MyMath::cosDeg(target_move_dir);
       float vel_y = move_speed * MyMath::sinDeg(target_move_dir);
 
-      pid.Compute(*yaw_, rotation_dir);  // 姿勢制御用PID
+      if (*vision_yaw_ != pre_vision_yaw_) {
+            corrected_yaw_ = *vision_yaw_;
+            pre_yaw_ = *yaw_;
+      } else {
+            corrected_yaw_ = *yaw_ - pre_yaw_ + pre_vision_yaw_;
+      }
+      corrected_yaw_ = MyMath::NormalizeDeg180(corrected_yaw_);
+      pre_vision_yaw_ = *vision_yaw_;
+      if (MyMath::GapDeg(corrected_yaw_, rotation_dir) < 180 && abs(corrected_yaw_ - rotation_dir) > 180) {
+            corrected_yaw_ = MyMath::NormalizeDeg(corrected_yaw_);
+            rotation_dir = MyMath::NormalizeDeg(rotation_dir);
+      }
+      pid.Compute(corrected_yaw_, rotation_dir);  // 姿勢制御用PID
       for (uint8_t i = 0; i < MOTOR_QTY; i++) {
             float robot_rotation_speed = pid.Get();
             if (abs(robot_rotation_speed) > rotation_speed && rotation_speed != 0) robot_rotation_speed = rotation_speed * (abs(robot_rotation_speed) / robot_rotation_speed);

@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   36 0000 38B5     		push	{r3, r4, r5, lr}
   37              		.save {r3, r4, r5, lr}
   38              	.LCFI0:
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 2
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 2
 
 
   39              		.cfi_def_cfa_offset 16
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   89 004a 0021     		movs	r1, #0
   90 004c 2046     		mov	r0, r4
   91 004e FFF7FEFF 		bl	_ZN3PID7SetTypeEh
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 3
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 3
 
 
   92              	.LVL8:
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  145 0006 0446     		mov	r4, r0
  146 0008 0026     		movs	r6, #0
   28:src/algorithm/defence/defence.cpp ****       if (!is_pid_initialized) {
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 4
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 4
 
 
  147              		.loc 1 28 7 is_stmt 1 view .LVU16
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  187              		.loc 1 42 13 view .LVU32
  188              		.loc 1 42 54 is_stmt 0 view .LVU33
  189 0040 B432     		adds	r2, r2, #180
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 5
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 5
 
 
  190              		.loc 1 42 31 view .LVU34
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  232              		.loc 1 49 13 is_stmt 1 view .LVU49
  233              		.loc 1 49 31 is_stmt 0 view .LVU50
  234 0068 5A36     		adds	r6, r6, #90
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 6
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 6
 
 
  235              	.LVL21:
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  285              		.loc 1 53 109 view .LVU70
  286 00c4 94F82130 		ldrb	r3, [r4, #33]	@ zero_extendqisi2
  287 00c8 08EE903A 		vmov	s17, r3	@ int
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 7
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 7
 
 
  288              		.loc 1 53 118 view .LVU71
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  338 011a B4F94E20 		ldrsh	r2, [r4, #78]
  339              		.loc 1 57 170 discriminator 4 view .LVU89
  340 011e 002A     		cmp	r2, #0
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 8
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 8
 
 
  341 0120 03DC     		bgt	.L14
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   64:src/algorithm/defence/defence.cpp ****             if (abs(robot->info.Cam.ball_dir) > 120) tmp_moving_speed = 0;
   65:src/algorithm/defence/defence.cpp ****             if (tmp_moving_speed > robot->info.target_move_speed) tmp_moving_speed = robot->info.ta
   66:src/algorithm/defence/defence.cpp ****             robot->motor.Drive(tmp_moving_dir, tmp_moving_speed);
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 9
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 9
 
 
   67:src/algorithm/defence/defence.cpp ****       }
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   62:src/algorithm/defence/defence.cpp ****             tmp_moving_speed = abs(move_speed);
  432              		.loc 1 62 53 is_stmt 0 view .LVU113
  433 0198 07EE903A 		vmov	s15, r3	@ int
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 10
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 10
 
 
  434 019c F8EEE70A 		vcvt.f32.s32	s1, s15
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  476              		.loc 1 66 13 is_stmt 1 view .LVU125
   66:src/algorithm/defence/defence.cpp ****       }
  477              		.loc 1 66 31 is_stmt 0 view .LVU126
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 11
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 11
 
 
  478 01e2 DFED0B0A 		vldr.32	s1, .L28+16
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   85:src/algorithm/defence/defence.cpp ****       } else {
   86:src/algorithm/defence/defence.cpp ****             robot->dribbler_front.Hold(0);
   87:src/algorithm/defence/defence.cpp ****       }
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 12
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 12
 
 
   88:src/algorithm/defence/defence.cpp **** 
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  543              	.LVL56:
    7:src/algorithm/defence/defence.cpp **** static PID ball_pid;
  544              		.loc 1 7 12 view .LVU136
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 13
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 13
 
 
  545 0014 FFF7FEFF 		bl	_ZN3PIDC1Ev
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   71:src/algorithm/defence/defence.cpp ****       if (enable_shoot == false) {
  596              		.loc 1 71 7 is_stmt 1 view .LVU143
   71:src/algorithm/defence/defence.cpp ****       if (enable_shoot == false) {
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 14
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 14
 
 
  597              		.loc 1 71 24 is_stmt 0 view .LVU144
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   76:src/algorithm/defence/defence.cpp ****             if (shoot_wait_timer.read_ms() > SHOOT_WAIT_TIME) {
  637              		.loc 1 76 41 is_stmt 0 view .LVU159
  638 0036 4E48     		ldr	r0, .L59+4
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 15
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 15
 
 
  639 0038 FFF7FEFF 		bl	_ZN5Timer7read_msEv
@@ -885,7 +885,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  669              		.loc 1 86 39 is_stmt 0 view .LVU170
  670 0064 0021     		movs	r1, #0
  671 0066 00F58650 		add	r0, r0, #4288
- 672 006a 0830     		adds	r0, r0, #8
+ 672 006a 1030     		adds	r0, r0, #16
  673 006c FFF7FEFF 		bl	_ZN13DribblerDrive4HoldEh
  674              	.LVL65:
  675              	.L45:
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   89:src/algorithm/defence/defence.cpp ****       if (enable_shoot == true) {
  680              		.loc 1 89 7 view .LVU173
  681 0074 23BB     		cbnz	r3, .L57
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 16
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 16
 
 
  102:src/algorithm/defence/defence.cpp ****       } else if (robot->info.Line.is_on_line == 1) {
@@ -912,7 +912,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  102:src/algorithm/defence/defence.cpp ****       } else if (robot->info.Line.is_on_line == 1) {
  687              		.loc 1 102 14 view .LVU177
  688 007c 002B     		cmp	r3, #0
- 689 007e 4ED0     		beq	.L51
+ 689 007e 4DD0     		beq	.L51
  103:src/algorithm/defence/defence.cpp ****             LineTrace(robot);
  690              		.loc 1 103 13 is_stmt 1 view .LVU178
  103:src/algorithm/defence/defence.cpp ****             LineTrace(robot);
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  720 009e FFF7FEFF 		bl	_ZN5Timer5resetEv
  721              	.LVL69:
  722 00a2 CFE7     		b	.L41
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 17
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 17
 
 
  723              	.L55:
@@ -968,7 +968,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  725              		.loc 1 82 39 is_stmt 0 view .LVU192
  726 00a4 6421     		movs	r1, #100
  727 00a6 00F58650 		add	r0, r0, #4288
- 728 00aa 0830     		adds	r0, r0, #8
+ 728 00aa 1030     		adds	r0, r0, #16
  729 00ac FFF7FEFF 		bl	_ZN13DribblerDrive4HoldEh
  730              	.LVL70:
  731 00b0 DEE7     		b	.L45
@@ -979,7 +979,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  734              		.loc 1 84 39 is_stmt 0 view .LVU194
  735 00b2 3221     		movs	r1, #50
  736 00b4 00F58650 		add	r0, r0, #4288
- 737 00b8 0830     		adds	r0, r0, #8
+ 737 00b8 1030     		adds	r0, r0, #16
  738 00ba FFF7FEFF 		bl	_ZN13DribblerDrive4HoldEh
  739              	.LVL71:
  740 00be D7E7     		b	.L45
@@ -1006,7 +1006,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  755 00ce 90F82E30 		ldrb	r3, [r0, #46]	@ zero_extendqisi2
   96:src/algorithm/defence/defence.cpp ****             if (robot->info.Catch.is_front == true) {
  756              		.loc 1 96 13 view .LVU201
- 757 00d2 03B3     		cbz	r3, .L49
+ 757 00d2 FBB1     		cbz	r3, .L49
   97:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(0, robot->info.target_move_speed, 1, robot->info.Cam.ops_goal_
  758              		.loc 1 97 19 is_stmt 1 view .LVU202
   97:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(0, robot->info.target_move_speed, 1, robot->info.Cam.ops_goal_
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
  764 00e2 90ED060A 		vldr.32	s0, [r0, #24]
  765 00e6 0021     		movs	r1, #0
  766 00e8 00F5C870 		add	r0, r0, #400
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 18
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 18
 
 
  767 00ec FFF7FEFF 		bl	_ZN10MotorDrive5DriveEsffsfh
@@ -1038,238 +1038,237 @@ ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 1
   92:src/algorithm/defence/defence.cpp ****                   robot->kicker.Kick();
  778              		.loc 1 92 37 is_stmt 0 view .LVU207
  779 00fa B7EE000A 		vmov.f32	s0, #1.0e+0
- 780 00fe 00F58750 		add	r0, r0, #4320
- 781 0102 1830     		adds	r0, r0, #24
- 782 0104 FFF7FEFF 		bl	_ZN6Kicker4KickEf
- 783              	.LVL74:
+ 780 00fe 00F58850 		add	r0, r0, #4352
+ 781 0102 FFF7FEFF 		bl	_ZN6Kicker4KickEf
+ 782              	.LVL74:
   93:src/algorithm/defence/defence.cpp ****                   shoot_wait_timer.reset();
- 784              		.loc 1 93 19 is_stmt 1 view .LVU208
+ 783              		.loc 1 93 19 is_stmt 1 view .LVU208
   93:src/algorithm/defence/defence.cpp ****                   shoot_wait_timer.reset();
- 785              		.loc 1 93 41 is_stmt 0 view .LVU209
- 786 0108 1948     		ldr	r0, .L59+4
- 787 010a FFF7FEFF 		bl	_ZN5Timer5resetEv
- 788              	.LVL75:
+ 784              		.loc 1 93 41 is_stmt 0 view .LVU209
+ 785 0106 1A48     		ldr	r0, .L59+4
+ 786 0108 FFF7FEFF 		bl	_ZN5Timer5resetEv
+ 787              	.LVL75:
   94:src/algorithm/defence/defence.cpp ****                   shoot_timer.reset();
- 789              		.loc 1 94 19 is_stmt 1 view .LVU210
+ 788              		.loc 1 94 19 is_stmt 1 view .LVU210
   94:src/algorithm/defence/defence.cpp ****                   shoot_timer.reset();
- 790              		.loc 1 94 36 is_stmt 0 view .LVU211
- 791 010e 1B48     		ldr	r0, .L59+16
- 792 0110 FFF7FEFF 		bl	_ZN5Timer5resetEv
- 793              	.LVL76:
- 794 0114 DAE7     		b	.L48
- 795              	.L49:
+ 789              		.loc 1 94 36 is_stmt 0 view .LVU211
+ 790 010c 1B48     		ldr	r0, .L59+16
+ 791 010e FFF7FEFF 		bl	_ZN5Timer5resetEv
+ 792              	.LVL76:
+ 793 0112 DBE7     		b	.L48
+ 794              	.L49:
   99:src/algorithm/defence/defence.cpp ****                   CaptureBall(robot, 0);
- 796              		.loc 1 99 19 is_stmt 1 view .LVU212
+ 795              		.loc 1 99 19 is_stmt 1 view .LVU212
   99:src/algorithm/defence/defence.cpp ****                   CaptureBall(robot, 0);
- 797              		.loc 1 99 30 is_stmt 0 view .LVU213
- 798 0116 0021     		movs	r1, #0
- 799 0118 FFF7FEFF 		bl	_Z11CaptureBallP5Robots
- 800              	.LVL77:
- 801 011c BAE7     		b	.L40
- 802              	.L51:
+ 796              		.loc 1 99 30 is_stmt 0 view .LVU213
+ 797 0114 0021     		movs	r1, #0
+ 798 0116 FFF7FEFF 		bl	_Z11CaptureBallP5Robots
+ 799              	.LVL77:
+ 800 011a BBE7     		b	.L40
+ 801              	.L51:
  107:src/algorithm/defence/defence.cpp ****             if (out_line_timer.read_ms() < SHOOT_TIME) {
- 803              		.loc 1 107 13 is_stmt 1 view .LVU214
+ 802              		.loc 1 107 13 is_stmt 1 view .LVU214
  107:src/algorithm/defence/defence.cpp ****             if (out_line_timer.read_ms() < SHOOT_TIME) {
- 804              		.loc 1 107 39 is_stmt 0 view .LVU215
- 805 011e 1648     		ldr	r0, .L59+12
- 806 0120 FFF7FEFF 		bl	_ZN5Timer7read_msEv
- 807              	.LVL78:
+ 803              		.loc 1 107 39 is_stmt 0 view .LVU215
+ 804 011c 1648     		ldr	r0, .L59+12
+ 805 011e FFF7FEFF 		bl	_ZN5Timer7read_msEv
+ 806              	.LVL78:
  107:src/algorithm/defence/defence.cpp ****             if (out_line_timer.read_ms() < SHOOT_TIME) {
- 808              		.loc 1 107 13 view .LVU216
- 809 0124 B0F57A7F 		cmp	r0, #1000
- 810 0128 10D2     		bcs	.L52
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 19
-
-
+ 807              		.loc 1 107 13 view .LVU216
+ 808 0122 B0F57A7F 		cmp	r0, #1000
+ 809 0126 10D2     		bcs	.L52
  108:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(pre_line_dir, 1, 1);
- 811              		.loc 1 108 19 is_stmt 1 view .LVU217
- 812 012a 6068     		ldr	r0, [r4, #4]
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 19
+
+
+ 810              		.loc 1 108 19 is_stmt 1 view .LVU217
+ 811 0128 6068     		ldr	r0, [r4, #4]
  108:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(pre_line_dir, 1, 1);
- 813              		.loc 1 108 37 is_stmt 0 view .LVU218
- 814 012c 0023     		movs	r3, #0
- 815 012e 9FED151A 		vldr.32	s2, .L59+24
- 816 0132 1A46     		mov	r2, r3
- 817 0134 F7EE000A 		vmov.f32	s1, #1.0e+0
- 818 0138 B0EE600A 		vmov.f32	s0, s1
- 819 013c 0D49     		ldr	r1, .L59+8
- 820 013e B1F90010 		ldrsh	r1, [r1]
- 821 0142 00F5C870 		add	r0, r0, #400
- 822 0146 FFF7FEFF 		bl	_ZN10MotorDrive5DriveEsffsfh
- 823              	.LVL79:
- 824 014a A3E7     		b	.L40
- 825              	.L52:
+ 812              		.loc 1 108 37 is_stmt 0 view .LVU218
+ 813 012a 0023     		movs	r3, #0
+ 814 012c 9FED151A 		vldr.32	s2, .L59+24
+ 815 0130 1A46     		mov	r2, r3
+ 816 0132 F7EE000A 		vmov.f32	s1, #1.0e+0
+ 817 0136 B0EE600A 		vmov.f32	s0, s1
+ 818 013a 0E49     		ldr	r1, .L59+8
+ 819 013c B1F90010 		ldrsh	r1, [r1]
+ 820 0140 00F5C870 		add	r0, r0, #400
+ 821 0144 FFF7FEFF 		bl	_ZN10MotorDrive5DriveEsffsfh
+ 822              	.LVL79:
+ 823 0148 A4E7     		b	.L40
+ 824              	.L52:
  110:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(robot->info.Cam.own_goal_dir, 0.5, 1);
- 826              		.loc 1 110 19 is_stmt 1 view .LVU219
- 827 014c 6068     		ldr	r0, [r4, #4]
+ 825              		.loc 1 110 19 is_stmt 1 view .LVU219
+ 826 014a 6068     		ldr	r0, [r4, #4]
  110:src/algorithm/defence/defence.cpp ****                   robot->motor.Drive(robot->info.Cam.own_goal_dir, 0.5, 1);
- 828              		.loc 1 110 37 is_stmt 0 view .LVU220
- 829 014e 0023     		movs	r3, #0
- 830 0150 9FED0C1A 		vldr.32	s2, .L59+24
- 831 0154 1A46     		mov	r2, r3
- 832 0156 F7EE000A 		vmov.f32	s1, #1.0e+0
- 833 015a B6EE000A 		vmov.f32	s0, #5.0e-1
- 834 015e B0F97010 		ldrsh	r1, [r0, #112]
- 835 0162 00F5C870 		add	r0, r0, #400
- 836 0166 FFF7FEFF 		bl	_ZN10MotorDrive5DriveEsffsfh
- 837              	.LVL80:
- 838              		.loc 1 113 1 view .LVU221
- 839 016a 93E7     		b	.L40
- 840              	.L60:
- 841              		.align	2
- 842              	.L59:
- 843 016c 00000000 		.word	_ZL12enable_shoot
- 844 0170 00000000 		.word	_ZL16shoot_wait_timer
- 845 0174 00000000 		.word	_ZL12pre_line_dir
- 846 0178 00000000 		.word	_ZL14out_line_timer
- 847 017c 00000000 		.word	_ZL11shoot_timer
- 848 0180 DB0FC940 		.word	1086918619
- 849 0184 00000000 		.word	0
- 850              		.cfi_endproc
- 851              	.LFE1199:
- 852              		.fnend
- 854              		.section	.text._GLOBAL__sub_I__ZN4Mode7DefenceEv,"ax",%progbits
- 855              		.align	1
- 856              		.syntax unified
- 857              		.thumb
- 858              		.thumb_func
- 860              	_GLOBAL__sub_I__ZN4Mode7DefenceEv:
- 861              		.fnstart
- 862              	.LFB1315:
- 863              		.loc 1 113 1 is_stmt 1 view -0
- 864              		.cfi_startproc
- 865              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 20
+ 827              		.loc 1 110 37 is_stmt 0 view .LVU220
+ 828 014c 0023     		movs	r3, #0
+ 829 014e 9FED0D1A 		vldr.32	s2, .L59+24
+ 830 0152 1A46     		mov	r2, r3
+ 831 0154 F7EE000A 		vmov.f32	s1, #1.0e+0
+ 832 0158 B6EE000A 		vmov.f32	s0, #5.0e-1
+ 833 015c B0F97010 		ldrsh	r1, [r0, #112]
+ 834 0160 00F5C870 		add	r0, r0, #400
+ 835 0164 FFF7FEFF 		bl	_ZN10MotorDrive5DriveEsffsfh
+ 836              	.LVL80:
+ 837              		.loc 1 113 1 view .LVU221
+ 838 0168 94E7     		b	.L40
+ 839              	.L60:
+ 840 016a 00BF     		.align	2
+ 841              	.L59:
+ 842 016c 00000000 		.word	_ZL12enable_shoot
+ 843 0170 00000000 		.word	_ZL16shoot_wait_timer
+ 844 0174 00000000 		.word	_ZL12pre_line_dir
+ 845 0178 00000000 		.word	_ZL14out_line_timer
+ 846 017c 00000000 		.word	_ZL11shoot_timer
+ 847 0180 DB0FC940 		.word	1086918619
+ 848 0184 00000000 		.word	0
+ 849              		.cfi_endproc
+ 850              	.LFE1199:
+ 851              		.fnend
+ 853              		.section	.text._GLOBAL__sub_I__ZN4Mode7DefenceEv,"ax",%progbits
+ 854              		.align	1
+ 855              		.syntax unified
+ 856              		.thumb
+ 857              		.thumb_func
+ 859              	_GLOBAL__sub_I__ZN4Mode7DefenceEv:
+ 860              		.fnstart
+ 861              	.LFB1315:
+ 862              		.loc 1 113 1 is_stmt 1 view -0
+ 863              		.cfi_startproc
+ 864              		@ args = 0, pretend = 0, frame = 0
+ 865              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 20
 
 
- 866              		@ frame_needed = 0, uses_anonymous_args = 0
- 867 0000 08B5     		push	{r3, lr}
- 868              	.LCFI9:
- 869              		.cfi_def_cfa_offset 8
- 870              		.cfi_offset 3, -8
- 871              		.cfi_offset 14, -4
- 872              		.loc 1 113 1 is_stmt 0 view .LVU223
- 873 0002 4FF6FF71 		movw	r1, #65535
- 874 0006 0120     		movs	r0, #1
- 875 0008 FFF7FEFF 		bl	_Z41__static_initialization_and_destruction_0ii
- 876              	.LVL81:
- 877 000c 08BD     		pop	{r3, pc}
- 878              		.cfi_endproc
- 879              	.LFE1315:
- 880              		.cantunwind
- 881              		.fnend
- 883              		.section	.init_array,"aw",%init_array
- 884              		.align	2
- 885 0000 00000000 		.word	_GLOBAL__sub_I__ZN4Mode7DefenceEv(target1)
- 886              		.section	.bss._ZL18is_pid_initialized,"aw",%nobits
- 889              	_ZL18is_pid_initialized:
- 890 0000 00       		.space	1
- 891              		.section	.bss._ZL12enable_shoot,"aw",%nobits
- 894              	_ZL12enable_shoot:
- 895 0000 00       		.space	1
- 896              		.section	.bss._ZL12pre_line_dir,"aw",%nobits
- 897              		.align	1
- 900              	_ZL12pre_line_dir:
- 901 0000 0000     		.space	2
- 902              		.section	.bss._ZL14out_line_timer,"aw",%nobits
- 903              		.align	2
- 906              	_ZL14out_line_timer:
- 907 0000 00000000 		.space	4
- 908              		.section	.bss._ZL11shoot_timer,"aw",%nobits
- 909              		.align	2
- 912              	_ZL11shoot_timer:
- 913 0000 00000000 		.space	4
- 914              		.section	.bss._ZL16shoot_wait_timer,"aw",%nobits
- 915              		.align	2
- 918              	_ZL16shoot_wait_timer:
- 919 0000 00000000 		.space	4
- 920              		.section	.bss._ZL8ball_pid,"aw",%nobits
- 921              		.align	3
- 924              	_ZL8ball_pid:
- 925 0000 00000000 		.space	104
- 925      00000000 
- 925      00000000 
- 925      00000000 
- 925      00000000 
- 926              		.text
- 927              	.Letext0:
- 928              		.file 2 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/cmath"
- 929              		.file 3 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/type_tra
- 930              		.file 4 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/debug/de
- 931              		.file 5 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/cstdio"
- 932              		.file 6 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/bits/stl
- 933              		.file 7 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/arm-none
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 21
+ 866 0000 08B5     		push	{r3, lr}
+ 867              	.LCFI9:
+ 868              		.cfi_def_cfa_offset 8
+ 869              		.cfi_offset 3, -8
+ 870              		.cfi_offset 14, -4
+ 871              		.loc 1 113 1 is_stmt 0 view .LVU223
+ 872 0002 4FF6FF71 		movw	r1, #65535
+ 873 0006 0120     		movs	r0, #1
+ 874 0008 FFF7FEFF 		bl	_Z41__static_initialization_and_destruction_0ii
+ 875              	.LVL81:
+ 876 000c 08BD     		pop	{r3, pc}
+ 877              		.cfi_endproc
+ 878              	.LFE1315:
+ 879              		.cantunwind
+ 880              		.fnend
+ 882              		.section	.init_array,"aw",%init_array
+ 883              		.align	2
+ 884 0000 00000000 		.word	_GLOBAL__sub_I__ZN4Mode7DefenceEv(target1)
+ 885              		.section	.bss._ZL18is_pid_initialized,"aw",%nobits
+ 888              	_ZL18is_pid_initialized:
+ 889 0000 00       		.space	1
+ 890              		.section	.bss._ZL12enable_shoot,"aw",%nobits
+ 893              	_ZL12enable_shoot:
+ 894 0000 00       		.space	1
+ 895              		.section	.bss._ZL12pre_line_dir,"aw",%nobits
+ 896              		.align	1
+ 899              	_ZL12pre_line_dir:
+ 900 0000 0000     		.space	2
+ 901              		.section	.bss._ZL14out_line_timer,"aw",%nobits
+ 902              		.align	2
+ 905              	_ZL14out_line_timer:
+ 906 0000 00000000 		.space	4
+ 907              		.section	.bss._ZL11shoot_timer,"aw",%nobits
+ 908              		.align	2
+ 911              	_ZL11shoot_timer:
+ 912 0000 00000000 		.space	4
+ 913              		.section	.bss._ZL16shoot_wait_timer,"aw",%nobits
+ 914              		.align	2
+ 917              	_ZL16shoot_wait_timer:
+ 918 0000 00000000 		.space	4
+ 919              		.section	.bss._ZL8ball_pid,"aw",%nobits
+ 920              		.align	3
+ 923              	_ZL8ball_pid:
+ 924 0000 00000000 		.space	104
+ 924      00000000 
+ 924      00000000 
+ 924      00000000 
+ 924      00000000 
+ 925              		.text
+ 926              	.Letext0:
+ 927              		.file 2 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/cmath"
+ 928              		.file 3 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/type_tra
+ 929              		.file 4 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/debug/de
+ 930              		.file 5 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/cstdio"
+ 931              		.file 6 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/bits/stl
+ 932              		.file 7 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/arm-none
+ 933              		.file 8 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/bits/pre
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 21
 
 
- 934              		.file 8 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/c++/12.3.1/bits/pre
- 935              		.file 9 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdd
- 936              		.file 10 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_t
- 937              		.file 11 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_types.h"
- 938              		.file 12 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/reent.h"
- 939              		.file 13 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/lock.h"
- 940              		.file 14 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h"
- 941              		.file 15 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/stdio.h"
- 942              		.file 16 "/opt/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_stdint.h"
- 943              		.file 17 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h"
- 944              		.file 18 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 945              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 946              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 947              		.file 21 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 948              		.file 22 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 949              		.file 23 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 950              		.file 24 "Lib/BufferedSerial/BufferedSerial.hpp"
- 951              		.file 25 "Lib/DigitalInOut/DigitalInOut.hpp"
- 952              		.file 26 "Lib/MovingAve/MovingAve.hpp"
- 953              		.file 27 "Lib/PWMSingle/PWMSingle.hpp"
- 954              		.file 28 "Lib/Timer/Timer.hpp"
- 955              		.file 29 "src/unit/dribbler_drive/dribbler_drive.hpp"
- 956              		.file 30 "src/unit/kicker/kicker.hpp"
- 957              		.file 31 "Lib/pid/pid.hpp"
- 958              		.file 32 "src/unit/motor_drive/motor_drive.hpp"
- 959              		.file 33 "src/unit/robot/robot.hpp"
- 960              		.file 34 "src/mode/mode.hpp"
- 961              		.file 35 "Lib/MyMath/MyMath.hpp"
- 962              		.file 36 "src/algorithm/capture_ball.hpp"
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 22
+ 934              		.file 9 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdd
+ 935              		.file 10 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_t
+ 936              		.file 11 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_types.h"
+ 937              		.file 12 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/reent.h"
+ 938              		.file 13 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/lock.h"
+ 939              		.file 14 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h"
+ 940              		.file 15 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdio.h"
+ 941              		.file 16 "/opt/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_stdint.h"
+ 942              		.file 17 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h"
+ 943              		.file 18 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 944              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 945              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 946              		.file 21 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 947              		.file 22 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 948              		.file 23 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 949              		.file 24 "Lib/BufferedSerial/BufferedSerial.hpp"
+ 950              		.file 25 "Lib/DigitalInOut/DigitalInOut.hpp"
+ 951              		.file 26 "Lib/MovingAve/MovingAve.hpp"
+ 952              		.file 27 "Lib/PWMSingle/PWMSingle.hpp"
+ 953              		.file 28 "Lib/Timer/Timer.hpp"
+ 954              		.file 29 "src/unit/dribbler_drive/dribbler_drive.hpp"
+ 955              		.file 30 "src/unit/kicker/kicker.hpp"
+ 956              		.file 31 "Lib/pid/pid.hpp"
+ 957              		.file 32 "src/unit/motor_drive/motor_drive.hpp"
+ 958              		.file 33 "src/unit/robot/robot.hpp"
+ 959              		.file 34 "src/mode/mode.hpp"
+ 960              		.file 35 "Lib/MyMath/MyMath.hpp"
+ 961              		.file 36 "src/algorithm/capture_ball.hpp"
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 defence.cpp
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:22     .text._ZL13InitializePIDP5Robot:00000000 $t
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:27     .text._ZL13InitializePIDP5Robot:00000000 _ZL13InitializePIDP5Robot
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:103    .text._ZL13InitializePIDP5Robot:00000058 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:924    .bss._ZL8ball_pid:00000000 _ZL8ball_pid
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:22     .text._ZL13InitializePIDP5Robot:00000000 $t
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:27     .text._ZL13InitializePIDP5Robot:00000000 _ZL13InitializePIDP5Robot
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:103    .text._ZL13InitializePIDP5Robot:00000058 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:923    .bss._ZL8ball_pid:00000000 _ZL8ball_pid
 .ARM.extab.text._ZL13InitializePIDP5Robot:00000000 $d
 .ARM.exidx.text._ZL13InitializePIDP5Robot:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:115    .text._ZL9LineTraceP5Robot:00000000 $t
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:120    .text._ZL9LineTraceP5Robot:00000000 _ZL9LineTraceP5Robot
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:497    .text._ZL9LineTraceP5Robot:00000200 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:889    .bss._ZL18is_pid_initialized:00000000 _ZL18is_pid_initialized
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:115    .text._ZL9LineTraceP5Robot:00000000 $t
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:120    .text._ZL9LineTraceP5Robot:00000000 _ZL9LineTraceP5Robot
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:497    .text._ZL9LineTraceP5Robot:00000200 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:888    .bss._ZL18is_pid_initialized:00000000 _ZL18is_pid_initialized
 .ARM.exidx.text._ZL9LineTraceP5Robot:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:507    .text._Z41__static_initialization_and_destruction_0ii:00000000 $t
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:512    .text._Z41__static_initialization_and_destruction_0ii:00000000 _Z41__static_initialization_and_destruction_0ii
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:564    .text._Z41__static_initialization_and_destruction_0ii:0000002c $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:918    .bss._ZL16shoot_wait_timer:00000000 _ZL16shoot_wait_timer
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:912    .bss._ZL11shoot_timer:00000000 _ZL11shoot_timer
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:906    .bss._ZL14out_line_timer:00000000 _ZL14out_line_timer
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:507    .text._Z41__static_initialization_and_destruction_0ii:00000000 $t
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:512    .text._Z41__static_initialization_and_destruction_0ii:00000000 _Z41__static_initialization_and_destruction_0ii
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:564    .text._Z41__static_initialization_and_destruction_0ii:0000002c $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:917    .bss._ZL16shoot_wait_timer:00000000 _ZL16shoot_wait_timer
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:911    .bss._ZL11shoot_timer:00000000 _ZL11shoot_timer
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:905    .bss._ZL14out_line_timer:00000000 _ZL14out_line_timer
 .ARM.exidx.text._Z41__static_initialization_and_destruction_0ii:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:574    .text._ZN4Mode7DefenceEv:00000000 $t
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:580    .text._ZN4Mode7DefenceEv:00000000 _ZN4Mode7DefenceEv
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:843    .text._ZN4Mode7DefenceEv:0000016c $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:894    .bss._ZL12enable_shoot:00000000 _ZL12enable_shoot
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:900    .bss._ZL12pre_line_dir:00000000 _ZL12pre_line_dir
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:574    .text._ZN4Mode7DefenceEv:00000000 $t
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:580    .text._ZN4Mode7DefenceEv:00000000 _ZN4Mode7DefenceEv
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:842    .text._ZN4Mode7DefenceEv:0000016c $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:893    .bss._ZL12enable_shoot:00000000 _ZL12enable_shoot
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:899    .bss._ZL12pre_line_dir:00000000 _ZL12pre_line_dir
 .ARM.exidx.text._ZN4Mode7DefenceEv:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:855    .text._GLOBAL__sub_I__ZN4Mode7DefenceEv:00000000 $t
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:860    .text._GLOBAL__sub_I__ZN4Mode7DefenceEv:00000000 _GLOBAL__sub_I__ZN4Mode7DefenceEv
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:854    .text._GLOBAL__sub_I__ZN4Mode7DefenceEv:00000000 $t
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:859    .text._GLOBAL__sub_I__ZN4Mode7DefenceEv:00000000 _GLOBAL__sub_I__ZN4Mode7DefenceEv
 .ARM.exidx.text._GLOBAL__sub_I__ZN4Mode7DefenceEv:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:884    .init_array:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:890    .bss._ZL18is_pid_initialized:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:895    .bss._ZL12enable_shoot:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:897    .bss._ZL12pre_line_dir:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:903    .bss._ZL14out_line_timer:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:909    .bss._ZL11shoot_timer:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:915    .bss._ZL16shoot_wait_timer:00000000 $d
-/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s:921    .bss._ZL8ball_pid:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:883    .init_array:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:889    .bss._ZL18is_pid_initialized:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:894    .bss._ZL12enable_shoot:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:896    .bss._ZL12pre_line_dir:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:902    .bss._ZL14out_line_timer:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:908    .bss._ZL11shoot_timer:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:914    .bss._ZL16shoot_wait_timer:00000000 $d
+/var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s:920    .bss._ZL8ball_pid:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_f2d
@@ -1290,7 +1289,7 @@ atan2
 NormalizeDeg180
 __aeabi_unwind_cpp_pr0
 _ZN3PIDC1Ev
-ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//cc22R5SV.s 			page 23
+ARM GAS  /var/folders/5c/srt4fy4j1pd641bjfx75k5000000gn/T//ccmOh6uh.s 			page 23
 
 
 _ZN5TimerC1Ev

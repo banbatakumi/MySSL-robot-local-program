@@ -34,7 +34,7 @@ void Mode::MainMode() {
       }
 
       robot->info.Esp32.do_rotate = false;
-      if (robot->info.Ui.item == 0 && robot->info.Ui.sub_item != 0) robot->info.Esp32.do_rotate = true;
+      // if (robot->info.Ui.item == 0 && robot->info.Ui.sub_item != 0) robot->info.Esp32.do_rotate = true;
 
       // モード切り替え
       if (robot->info.mode == 0) {
@@ -64,12 +64,18 @@ void Mode::MainMode() {
             Defence();
       } else if (robot->info.mode == 3) {  // debug mode
             if (robot->info.Esp32.Wifi.stop) {
-                  robot->motor.Drive(0, 0, 0, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
+                  robot->motor.Free();
             } else {
-                  robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 5, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
+                  if (robot->info.Esp32.Wifi.face_axis == 0) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, CENTER);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 1) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, FRONT);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 2) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, BACK);
+                  }
             }
-            if (robot->info.Esp32.Wifi.do_kick) {
-                  robot->kicker.Kick();
+            if (robot->info.Esp32.Wifi.kick) {
+                  robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
             }
             if (robot->info.Esp32.Wifi.do_dribble) {
                   robot->dribbler_front.Hold(HOLD_MAX_POWER);
