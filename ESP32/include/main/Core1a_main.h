@@ -11,16 +11,17 @@ void Core1a_setup() {
 
 void Core1a_loop() {
       // UART送信
-      const uint8_t send_byte_num = 8;
+      const uint8_t send_byte_num = 9;
       uint8_t send_byte[send_byte_num];
       send_byte[0] = 0xFF;
       send_byte[1] = yaw / 2 + 90;
-      send_byte[2] = move_dir / 2 + 90;
+      send_byte[2] = move_angle / 2 + 90;
       send_byte[3] = move_speed * 100;
       send_byte[4] = face_angle / 2 + 90;
-      send_byte[5] = vision_own_dir / 2 + 90;
-      send_byte[6] = (stop << 5) | (do_dribble << 4) | uint8_t(kick * 0.1);
-      send_byte[7] = 0xAA;
+      send_byte[5] = face_speed * 100;
+      send_byte[6] = vision_angle / 2 + 90;
+      send_byte[7] = (stop << 7) | (do_dribble << 6) | (face_axis << 4) | uint8_t(kick * 0.1);
+      send_byte[8] = 0xAA;
       Serial2.write(send_byte, send_byte_num);
 
       static const uint8_t HEADER = 0xFF;   // ヘッダ

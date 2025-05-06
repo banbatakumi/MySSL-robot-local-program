@@ -55,11 +55,13 @@ int16_t line_inside_dir;
 uint8_t line_depth;
 int16_t under_yaw;
 
-int16_t move_dir;
+int16_t move_angle;
 float move_speed;
 int16_t face_angle;
+float face_speed;
+uint8_t face_axis;
 uint8_t kick;
 bool stop;
 bool do_dribble;
-int16_t vision_own_dir;
+int16_t vision_angle;
 #endif

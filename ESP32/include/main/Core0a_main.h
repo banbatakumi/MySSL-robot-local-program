@@ -84,20 +84,27 @@ void Core0a_loop() {
                         if (cmd.containsKey("move_speed")) {
                               move_speed = cmd["move_speed"];
                         }
-                        if (cmd.containsKey("move_dir")) {
-                              move_dir = cmd["move_dir"];
+                        if (cmd.containsKey("move_angle")) {
+                              move_angle = cmd["move_angle"];
                         }
                         if (cmd.containsKey("face_angle")) {
                               face_angle = cmd["face_angle"];
                         }
-                        if (cmd.containsKey("vision_own_dir")) {
-                              vision_own_dir = cmd["vision_own_dir"];
+                        if (cmd.containsKey("face_speed")) {
+                              face_speed = cmd["face_speed"];
+                        }
+                        if (cmd.containsKey("face_axis")) {
+                              face_axis = cmd["face_axis"];
+                        }
+                        if (cmd.containsKey("vision_angle")) {
+                              vision_angle = cmd["vision_angle"];
                         }
                         if (cmd.containsKey("stop")) {
                               stop = cmd["stop"];
                         }
                         if (cmd.containsKey("kick")) {
                               kick = cmd["kick"];
+                              if (kick > 100) kick = 100;
                         }
                         if (cmd.containsKey("dribble")) {
                               do_dribble = cmd["dribble"];
@@ -106,8 +113,8 @@ void Core0a_loop() {
                         // Serial.print("Received command:");
                         // Serial.print(" move_speed: ");
                         // Serial.print(move_speed);
-                        // Serial.print(" move_dir: ");
-                        // Serial.print(move_dir);
+                        // Serial.print(" move_angle: ");
+                        // Serial.print(move_angle);
                         // Serial.print(" face_angle: ");
                         // Serial.print(face_angle);
                         // Serial.print(" stop: ");
