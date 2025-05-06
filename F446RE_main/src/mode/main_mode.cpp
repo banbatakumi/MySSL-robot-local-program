@@ -67,11 +67,11 @@ void Mode::MainMode() {
                   robot->motor.Free();
             } else {
                   if (robot->info.Esp32.Wifi.face_axis == 0) {
-                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, PI, CENTER);
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, CENTER);
                   } else if (robot->info.Esp32.Wifi.face_axis == 1) {
-                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, PI, FRONT);
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, FRONT);
                   } else if (robot->info.Esp32.Wifi.face_axis == 2) {
-                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, PI, BACK);
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, 10, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, BACK);
                   }
             }
             if (robot->info.Esp32.Wifi.kick) {
