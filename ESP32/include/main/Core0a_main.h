@@ -3,195 +3,153 @@
 
 #include "setup.h"
 
-#define CORE0A_CONTROL_FREQ 100  // Hz
+#define CORE0A_CONTROL_FREQ 250  // Hz
 
-#ifdef bluetooth
-#ifdef ROBOT_1
-String MACadd = "3C:61:05:67:EB:AA";  // ROBOT_2のアドレス
-uint8_t address[6] = {0x3C, 0x61, 0x05, 0x67, 0xEB, 0xAA};
-#endif
-#ifdef ROBOT_2
-String MACadd = "EC:94:CB:7E:05:42";  // ROBOT_1のアドレス
-uint8_t address[6] = {0xEC, 0x94, 0xCB, 0x7E, 0x05, 0x42};
-#endif
+// Wi-Fi 設定
+const char* ssid = "asus24";        // << ご自身のWi-Fi SSID に変更 >>
+const char* password = "19671202";  // << ご自身のWi-Fi パスワードに変更 >>
 
-uint16_t disconnect_count;
+// UDP 設定
+// PC Controller から指令を受信するポート (robot_controller.py の COMMAND_SEND_PORT と同じ)
+const unsigned int commandListenPort = 50008;  // << robot_controller.py と同じにする >>
+// PC Controller へセンサーデータを送信するポート (robot_controller.py の SENSOR_LISTEN_PORT と同じ)
+const unsigned int sensorSendPort = 50009;  // << robot_controller.py と同じにする >>
 
-void Core0a_setup() {
-      pinMode(led_pin, OUTPUT);
-#ifdef ROBOT_1
-      SerialBT.begin("ROBOT_1_ESP32", true);
-      bool connected = SerialBT.connect(address);
-      if (connected) {
-            Serial.println("Connect OK");
-      } else {
-            while (!SerialBT.connected(10000)) Serial.println("No connect");
-      }
-      if (SerialBT.disconnect()) Serial.println("Disconnected Succesfully!");
+// PC Controller の IP アドレス
+// robot_controller.py が動作する PC のローカル IP アドレス
+const char* controllerIP = "192.168.50.86";  // << <-- ここを PC Controller の実際の IP アドレスに変更 >>
+// UDP オブジェクト
+WiFiUDP udp;
 
-      SerialBT.connect();
-#endif
-#ifdef ROBOT_2
-      SerialBT.begin("ROBOT_2_ESP32");
-#endif
-#ifdef GET_MAC
-      uint8_t macBT[6];
-      esp_read_mac(macBT, ESP_MAC_BT);
-      Serial.printf("%02X:%02X:%02X:%02X:%02X:%02X\r\n", macBT[0], macBT[1], macBT[2], macBT[3], macBT[4], macBT[5]);
-#endif
-      // SerialBT.begin("ROBOT_ESP32");
-}
+// 指令受信バッファと JSON ドキュメント
+char commandPacket[256];                 // 指令データの最大サイズに応じて調整
+StaticJsonDocument<256> commandJsonDoc;  // 指令 JSON のバッファサイズに応じて調整
 
-void Core0a_loop() {
-#ifdef ROBOT_1
-      if (SerialBT.connected(10000)) {
-            is_connect = 1;
-            // 送信
-            uint8_t send_data = can_get_pass << 3 | is_catch_ball << 2 | is_defense << 1 | is_moving;
-            SerialBT.write(send_data);
+// センサーデータ JSON ドキュメントと送信バッファ
+StaticJsonDocument<256> sensorJsonDoc;  // センサー JSON のバッファサイズに応じて調整
+char sensorPacket[256];                 // センサーデータの最大サイズに応じて調整
 
-            // 受信
-            if (SerialBT.available()) {
-                  uint8_t recv_data = SerialBT.read();
-                  is_ally_moving = (recv_data) & 1;
-                  is_ally_defense = (recv_data >> 1) & 1;
-                  is_ally_catch_ball = (recv_data >> 2) & 1;
-                  can_ally_get_pass = (recv_data >> 3) & 1;
-
-                  digitalWrite(led_pin, HIGH);
-            } else {
-                  digitalWrite(led_pin, LOW);
-            }
-      } else {
-            is_connect = 0;
-            SerialBT.begin("ROBOT_1_ESP32", true);
-            bool connected = SerialBT.connect(address);
-            if (connected) {
-                  Serial.println("Connect OK");
-            } else {
-                  while (!SerialBT.connected(10000)) Serial.println("No connect");
-            }
-      }
-      Serial.println(is_connect);
-#endif
-#ifdef ROBOT_2
-      // 送信
-      uint8_t send_data = can_get_pass << 3 | is_catch_ball << 2 | is_defense << 1 | is_moving;
-      SerialBT.write(send_data);
-
-      // 受信
-      if (SerialBT.available()) {
-            is_connect = 1;
-            uint8_t recv_data = SerialBT.read();
-            is_ally_moving = (recv_data) & 1;
-            is_ally_defense = (recv_data >> 1) & 1;
-            is_ally_catch_ball = (recv_data >> 2) & 1;
-            can_ally_get_pass = (recv_data >> 3) & 1;
-            digitalWrite(led_pin, HIGH);
-            disconnect_count = 0;
-      } else {
-            digitalWrite(led_pin, LOW);
-            disconnect_count++;
-            if (disconnect_count > 100) {
-                  SerialBT.begin("ROBOT_2_ESP32");
-                  disconnect_count = 0;
-                  is_connect = 0;
-            }
-      }
-#endif
-      // if (SerialBT.available()) pc_command = SerialBT.read();
-}
-
-#endif
-
-#ifdef wifi
-const char* ssid = "ESP32-Crescent";  // SSID
-const char* password = "20060210";    // 8文字以上
-
-WiFiServer server(1234);
-WiFiClient client;
 void Core0a_setup() {  // アクセスポイントモード起動
-      WiFi.softAP(ssid, password);
-      IPAddress IP = WiFi.softAPIP();
-      Serial.print("AP IP address: ");
-      Serial.println(IP);
+      WiFi.begin(ssid, password);
+      while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+            Serial.println("Connecting...");
+      }
+      Serial.println("WiFi connected");
+      Serial.print("ESP32 IP address: ");
+      Serial.println(WiFi.localIP());  // この IP を PC Controller の ESP32_IP に設定
 
-      server.begin();
+      // UDP 指令待ち受け開始
+      udp.begin(commandListenPort);
+      Serial.printf("Now listening for commands at IP %s, port %d\n", WiFi.localIP().toString().c_str(), commandListenPort);
 }
 
 void Core0a_loop() {
-      // 新しいクライアントが来たら保存
-      if (!client || !client.connected()) {
-            client = server.available();
-            if (client) {
-                  Serial.println("クライアント接続完了");
-            }
-      }
+      // --- 指令の受信と処理 ---
+      int packetSize = udp.parsePacket();
+      if (packetSize) {
+            // 受信バッファのクリアと読み込み
+            memset(commandPacket, 0, sizeof(commandPacket));  // バッファをクリア
+            int len = udp.read(commandPacket, sizeof(commandPacket) - 1);
+            commandPacket[len] = 0;  // ヌル終端
 
-      // 接続中かつ送信タイミングになったらデータ送信
-      if (client && client.connected()) {
-            String payload = String(voltage) + "," +
-                             String(moving_dir) + "," +
-                             String(moving_speed, 2) + "," +
-                             String(own_x) + "," +
-                             String(own_y) + "," +
-                             String(under_yaw) + "," +
-                             String(ball_dir) + "," +
-                             String(ball_dis) + "," +
-                             String(yellow_goal_dir) + "," +
-                             String(yellow_goal_size) + "," +
-                             String(blue_goal_dir) + "," +
-                             String(blue_goal_size) + "," +
-                             String(is_hold_ball_front) + "," +
-                             String(is_hold_ball_back) + "," +
-                             String(is_on_line) + "," +
-                             String(line_inside_dir) + "," +
-                             String(line_depth);
-            client.println(payload);
+            // JSON パース
+            DeserializationError error = deserializeJson(commandJsonDoc, commandPacket);
 
-            // データ受信
-            if (client.available()) {
-                  String receivedData = client.readStringUntil('\n');  // 改行までのデータを受信
-                  Serial.println("受信データ: " + receivedData);
+            if (error) {
+                  Serial.print(F("deserializeJson() failed for command: "));
+                  Serial.println(error.f_str());
+            } else {
+                  // --- 受信した指令データの利用 ---
+                  // 例: 指令値を取り出す
+                  if (commandJsonDoc.containsKey("cmd")) {
+                        JsonObject cmd = commandJsonDoc["cmd"].as<JsonObject>();
 
-                  do_kick = false;  // キック動作を実行するフラグを立てる
-                  // データ解析
-                  if (receivedData.startsWith("MOVE:")) {
-                        stop = false;
-                        String str = receivedData.substring(5);  // "MOVE:"以降を取得
-                        int16_t angle = str.toInt();             // 角度を整数に変換
-                        move_dir = angle;                        // ロボットの進行方向を更新
-
-                        Serial.println("進行方向を更新: " + String(move_dir));
-                  } else if (receivedData.startsWith("DRIBBLER:")) {
-                        String str = receivedData.substring(9);  // "DRIBBLER:"以降を取得
-                        if (str == "ON") {
-                              do_dribble = true;  // ドリブル動作を実行するフラグを立てる
-                              Serial.println("ドリブル動作を実行");
-                        } else if (str == "OFF") {
-                              do_dribble = false;  // ドリブル動作を停止するフラグを立てる
-                              Serial.println("ドリブル動作を停止");
+                        if (cmd.containsKey("move_speed")) {
+                              move_speed = cmd["move_speed"];
                         }
-                  } else if (receivedData.startsWith("SPEED:")) {
-                        String str = receivedData.substring(6);  // "SPEED:"以降を取得
-                        move_speed = str.toFloat();              // スピードを浮動小数点数に変換
-                        Serial.println("スピードを更新: " + String(move_speed));
-                  } else if (receivedData.startsWith("FACE:")) {
-                        String str = receivedData.substring(5);  // "FACE:"以降を取得
-                        face_angle = str.toInt();                // 角度を整数に変換
-                        Serial.println("顔の角度を更新: " + String(face_angle));
-                  } else if (receivedData == "KICK") {
-                        do_kick = true;  // キック動作を実行するフラグを立てる
-                        Serial.println("キック動作を実行");
-                  } else if (receivedData == "STOP") {
-                        stop = true;  // ロボットを停止
-                        Serial.println("ロボットを停止");
-                  } else {
-                        Serial.println("無効なコマンド: " + receivedData);
+                        if (cmd.containsKey("move_angle")) {
+                              move_angle = cmd["move_angle"];
+                        }
+                        if (cmd.containsKey("face_angle")) {
+                              face_angle = cmd["face_angle"];
+                        }
+                        if (cmd.containsKey("face_speed")) {
+                              face_speed = cmd["face_speed"];
+                        }
+                        if (cmd.containsKey("face_axis")) {
+                              face_axis = cmd["face_axis"];
+                        }
+                        if (cmd.containsKey("vision_angle")) {
+                              vision_angle = cmd["vision_angle"];
+                        }
+                        if (cmd.containsKey("stop")) {
+                              stop = cmd["stop"];
+                        }
+                        if (cmd.containsKey("kick")) {
+                              kick = cmd["kick"];
+                              if (kick > 100) kick = 100;
+                        }
+                        if (cmd.containsKey("dribble")) {
+                              do_dribble = cmd["dribble"];
+                        }
+
+                        // Serial.print("Received command:");
+                        // Serial.print(" move_speed: ");
+                        // Serial.print(move_speed);
+                        // Serial.print(" move_angle: ");
+                        // Serial.print(move_angle);
+                        // Serial.print(" face_angle: ");
+                        // Serial.print(face_angle);
+                        // Serial.print(" stop: ");
+                        // Serial.print(stop);
+                        // Serial.print(" kick: ");
+                        // Serial.print(kick);
+                        // Serial.print(" dribble: ");
+                        // Serial.print(do_dribble);
+                        // Serial.println();
                   }
             }
       }
-}
-#endif
 
+      // --- センサーデータの取得と送信 ---
+      unsigned long currentTime = millis();
+
+      // --- センサーデータの構造化 ---
+      sensorJsonDoc.clear();  // ドキュメントをクリア
+      sensorJsonDoc["type"] = "sensor_data";
+      // sensorJsonDoc["ts"] = currentTime;  // ESP32側のタイムスタンプ
+
+      // センサーデータの格納
+      sensorJsonDoc["voltage"] = voltage;
+
+      JsonObject photo = sensorJsonDoc.createNestedObject("photo");
+      photo["front"] = is_hold_ball_front;
+      photo["back"] = is_hold_ball_back;
+
+      JsonObject moving = sensorJsonDoc.createNestedObject("moving");
+      moving["dir"] = moving_dir;
+      moving["speed"] = moving_speed;
+
+      JsonObject line = sensorJsonDoc.createNestedObject("line");
+      line["on_line"] = is_on_line;
+      line["inside_dir"] = line_inside_dir;
+      line["depth"] = line_depth;
+
+      // --- センサーデータの送信 ---
+      if (udp.beginPacket(controllerIP, sensorSendPort)) {
+            // JSON をシリアライズしてパケットに書き込む
+            int bytesSent = serializeJson(sensorJsonDoc, sensorPacket, sizeof(sensorPacket));
+            if (bytesSent > 0) {
+                  udp.write((uint8_t*)sensorPacket, bytesSent);
+                  udp.endPacket();
+                  // Serial.printf("Sent sensor data (%d bytes)\n", bytesSent); // デバッグ用
+            } else {
+                  Serial.println("Failed to serialize sensor JSON.");
+            }
+      } else {
+            Serial.println("Failed to begin UDP packet for sensor data.");  // 頻繁に出る場合はコメントアウト
+            // コントローラーPCが起動していない、IPアドレスが間違っているなどの可能性
+      }
+}
 #endif
