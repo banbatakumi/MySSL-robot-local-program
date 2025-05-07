@@ -63,6 +63,6 @@ float face_speed;
 uint8_t face_axis;
 uint8_t kick;
 bool stop;
-bool do_dribble;
+uint8_t dribble;
 int16_t vision_angle;
 #endif

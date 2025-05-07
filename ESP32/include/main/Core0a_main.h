@@ -94,7 +94,8 @@ void Core0a_loop() {
                               if (kick > 100) kick = 100;
                         }
                         if (cmd.containsKey("dribble")) {
-                              do_dribble = cmd["dribble"];
+                              dribble = cmd["dribble"];
+                              if (dribble > 100) dribble = 100;
                         }
 
                         // Serial.print("Received command:");

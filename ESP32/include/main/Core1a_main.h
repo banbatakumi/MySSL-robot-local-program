@@ -10,10 +10,13 @@ void Core1a_setup() {
 }
 
 void Core1a_loop() {
+      static const uint8_t HEADER = 0xFF;  // ヘッダ
+      static const uint8_t FOOTER = 0xAA;  // ヘッダ
+
       // UART送信
-      const uint8_t send_byte_num = 9;
+      const uint8_t send_byte_num = 10;
       uint8_t send_byte[send_byte_num];
-      send_byte[0] = 0xFF;
+      send_byte[0] = HEADER;
       send_byte[1] = yaw / 2 + 90;
       send_byte[2] = move_angle / 2 + 90;
       send_byte[3] = move_speed * 100;
@@ -21,12 +24,11 @@ void Core1a_loop() {
       send_byte[5] = face_angle / 2 + 90;
       send_byte[6] = face_speed * 10;
       send_byte[7] = vision_angle / 2 + 90;
-      send_byte[8] = (stop << 7) | (do_dribble << 6) | (face_axis << 4) | uint8_t(kick * 0.1);
-      send_byte[9] = 0xAA;
+      send_byte[8] = (uint8_t(dribble * 0.1) << 4) | uint8_t(kick * 0.1);
+      send_byte[9] = (stop << 2) | face_axis;
+      send_byte[10] = FOOTER;
       Serial2.write(send_byte, send_byte_num);
 
-      static const uint8_t HEADER = 0xFF;   // ヘッダ
-      static const uint8_t FOOTER = 0xAA;   // ヘッダ
       static const uint8_t data_size = 9;   // データのサイズ
       static uint8_t index = 0;             // 受信したデータのインデックスカウンター
       static uint8_t recv_data[data_size];  // 受信したデータ
