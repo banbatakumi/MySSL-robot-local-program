@@ -44,7 +44,7 @@ void CaptureBall(Robot* robot, int16_t target_dir) {
             if (robot->info.Cam.ball_dis > CAPTURE_R) move_vel_y += ball_dis_capture_pid.Get();
             move_dir = MyMath::atan2(move_vel_x, move_vel_y);
       } else if (robot->info.Cam.ball_dis < CAPTURE_R) {
-            theta = 90 + float(robot->info.Cam.ball_dis / CAPTURE_R) * 30;
+            theta = 90 + float((CAPTURE_R - robot->info.Cam.ball_dis) / CAPTURE_R) * 30;
             move_dir = ball_dir + (ball_dir > 0 ? theta : -theta);
 
             if (abs(target_dir) < 90) {
