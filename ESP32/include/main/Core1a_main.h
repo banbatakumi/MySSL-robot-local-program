@@ -14,7 +14,7 @@ void Core1a_loop() {
       static const uint8_t FOOTER = 0xAA;  // ヘッダ
 
       // UART送信
-      const uint8_t send_byte_num = 10;
+      const uint8_t send_byte_num = 11;
       uint8_t send_byte[send_byte_num];
       send_byte[0] = HEADER;
       send_byte[1] = yaw / 2 + 90;
