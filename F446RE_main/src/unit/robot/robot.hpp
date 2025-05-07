@@ -101,6 +101,7 @@ struct RobotInfo {
 
                   int16_t move_dir;
                   float move_speed;
+                  float move_acce;
                   int16_t face_angle;
                   float face_speed;
                   uint8_t face_axis;
