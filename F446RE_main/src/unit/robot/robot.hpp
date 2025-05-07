@@ -106,7 +106,7 @@ struct RobotInfo {
                   float face_speed;
                   uint8_t face_axis;
                   uint8_t kick;
-                  bool do_dribble;
+                  uint8_t dribble;
                   bool stop;
                   int16_t vision_own_dir;
             } Wifi;

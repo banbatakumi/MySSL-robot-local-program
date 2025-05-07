@@ -357,10 +357,11 @@ void Robot::CamUart() {
 }
 
 void Robot::Esp32Uart() {
+      static const uint8_t HEADER = 0xFF;  // ヘッダ
+      static const uint8_t FOOTER = 0xAA;  // ヘッダ
+
       while (serial5.available()) {
-            static const uint8_t HEADER = 0xFF;   // ヘッダ
-            static const uint8_t FOOTER = 0xAA;   // フッタ
-            static const uint8_t data_size = 8;   // データのサイズ
+            static const uint8_t data_size = 9;   // データのサイズ
             static uint8_t index = 0;             // 受信したデータのインデックスカウンター
             static uint8_t recv_data[data_size];  // 受信したデータ
             static uint8_t recv_byte;
@@ -382,9 +383,9 @@ void Robot::Esp32Uart() {
                         info.Esp32.Wifi.face_speed = recv_data[5] * 0.1;
                         info.Esp32.Wifi.vision_own_dir = recv_data[6] * 2 - 180;
                         info.Esp32.Wifi.kick = (recv_data[7] & 0b00001111) * 10;
-                        info.Esp32.Wifi.face_axis = (recv_data[7] >> 4) & 0b00000011;
-                        info.Esp32.Wifi.do_dribble = (recv_data[7] >> 6) & 1;
-                        info.Esp32.Wifi.stop = (recv_data[7] >> 7) & 1;
+                        info.Esp32.Wifi.dribble = ((recv_data[7] >> 4) & 0b00001111) * 10;
+                        info.Esp32.Wifi.face_axis = recv_data[8] & 0b00000011;
+                        info.Esp32.Wifi.stop = (recv_data[8] >> 2) & 1;
                   }
                   index = 0;
             } else {
@@ -394,8 +395,6 @@ void Robot::Esp32Uart() {
       }
 
       if (esp32_send_interval_timer.read_us() >= ESP32_SEND_PERIOD_US) {
-            static const uint8_t HEADER = 0xFF;  // ヘッダ
-            static const uint8_t FOOTER = 0xAA;  // ヘッダ
             static const uint8_t data_size = 11;
             uint8_t send_data[data_size];
             send_data[0] = HEADER;

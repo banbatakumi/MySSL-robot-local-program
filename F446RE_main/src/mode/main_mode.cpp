@@ -77,8 +77,8 @@ void Mode::MainMode() {
                   if (robot->info.Esp32.Wifi.kick) {
                         robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
                   }
-                  if (robot->info.Esp32.Wifi.do_dribble) {
-                        robot->dribbler_front.Hold(HOLD_MAX_POWER);
+                  if (robot->info.Esp32.Wifi.dribble) {
+                        robot->dribbler_front.Hold(robot->info.Esp32.Wifi.dribble);
                   } else {
                         robot->dribbler_front.Hold(0);
                   }
