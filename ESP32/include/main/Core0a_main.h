@@ -69,13 +69,10 @@ void Core0a_loop() {
                               move_speed = cmd["move_speed"];
                         }
                         if (cmd.containsKey("move_angle")) {
-                              move_angle = cmd["move_angle"];
-                        }
-                        if (cmd.containsKey("move_acce")) {
-                              move_acce = cmd["move_acce"];
+                              move_angle = SimplifyDeg(cmd["move_angle"]);
                         }
                         if (cmd.containsKey("face_angle")) {
-                              face_angle = cmd["face_angle"];
+                              face_angle = SimplifyDeg(cmd["face_angle"]);
                         }
                         if (cmd.containsKey("face_speed")) {
                               face_speed = cmd["face_speed"];
@@ -84,7 +81,7 @@ void Core0a_loop() {
                               face_axis = cmd["face_axis"];
                         }
                         if (cmd.containsKey("vision_angle")) {
-                              vision_angle = cmd["vision_angle"];
+                              vision_angle = SimplifyDeg(cmd["vision_angle"]);
                         }
                         if (cmd.containsKey("stop")) {
                               stop = cmd["stop"];
