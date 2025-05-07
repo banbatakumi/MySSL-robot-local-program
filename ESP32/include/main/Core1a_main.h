@@ -17,11 +17,12 @@ void Core1a_loop() {
       send_byte[1] = yaw / 2 + 90;
       send_byte[2] = move_angle / 2 + 90;
       send_byte[3] = move_speed * 100;
-      send_byte[4] = face_angle / 2 + 90;
-      send_byte[5] = face_speed * 10;
-      send_byte[6] = vision_angle / 2 + 90;
-      send_byte[7] = (stop << 7) | (do_dribble << 6) | (face_axis << 4) | uint8_t(kick * 0.1);
-      send_byte[8] = 0xAA;
+      send_byte[4] = move_acce * 10;
+      send_byte[5] = face_angle / 2 + 90;
+      send_byte[6] = face_speed * 10;
+      send_byte[7] = vision_angle / 2 + 90;
+      send_byte[8] = (stop << 7) | (do_dribble << 6) | (face_axis << 4) | uint8_t(kick * 0.1);
+      send_byte[9] = 0xAA;
       Serial2.write(send_byte, send_byte_num);
 
       static const uint8_t HEADER = 0xFF;   // ヘッダ

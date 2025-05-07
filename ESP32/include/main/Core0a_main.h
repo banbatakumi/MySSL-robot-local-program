@@ -71,6 +71,9 @@ void Core0a_loop() {
                         if (cmd.containsKey("move_angle")) {
                               move_angle = cmd["move_angle"];
                         }
+                        if (cmd.containsKey("move_acce")) {
+                              move_acce = cmd["move_acce"];
+                        }
                         if (cmd.containsKey("face_angle")) {
                               face_angle = cmd["face_angle"];
                         }
@@ -113,7 +116,7 @@ void Core0a_loop() {
       }
 
       // --- センサーデータの取得と送信 ---
-      unsigned long currentTime = millis();
+      // unsigned long currentTime = millis();
 
       // --- センサーデータの構造化 ---
       sensorJsonDoc.clear();  // ドキュメントをクリア
