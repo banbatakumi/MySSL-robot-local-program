@@ -85,7 +85,7 @@ void Mode::MainMode() {
             }
 
       } else if (robot->info.mode == 4) {  // debug mode
-            robot->motor.Drive(0);
+            robot->motor.Drive(0, 0.5, 0.1);
             robot->info.Ui.debug[0] = robot->info.motor_rad_s[1] * 100;
             robot->info.Ui.debug[1] = 0;
       }

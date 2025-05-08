@@ -74,4 +74,5 @@ float PID::Get() {
 
 void PID::ResetI() {
       i_ = 0;
+      sampling_timer.reset();
 }
