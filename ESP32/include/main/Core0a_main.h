@@ -11,9 +11,9 @@ const char* password = "19671202";  // << ご自身のWi-Fi パスワードに�
 
 // UDP 設定
 // PC Controller から指令を受信するポート (robot_controller.py の COMMAND_SEND_PORT と同じ)
-const unsigned int commandListenPort = 50008;  // << robot_controller.py と同じにする >>
+const unsigned int commandListenPort = 50010;  // << robot_controller.py と同じにする >>
 // PC Controller へセンサーデータを送信するポート (robot_controller.py の SENSOR_LISTEN_PORT と同じ)
-const unsigned int sensorSendPort = 50009;  // << robot_controller.py と同じにする >>
+const unsigned int sensorSendPort = 50011;  // << robot_controller.py と同じにする >>
 
 // PC Controller の IP アドレス
 // robot_controller.py が動作する PC のローカル IP アドレス
