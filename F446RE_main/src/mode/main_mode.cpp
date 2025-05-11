@@ -15,8 +15,8 @@ void Mode::MainMode() {
       // UART通信
       robot->ImuUart();
       robot->LineUart();
-      robot->UiUart();
-      robot->CamUart();
+      // robot->UiUart();
+      // robot->CamUart();
       robot->Esp32Uart();
 
       // センサー情報取得
@@ -38,24 +38,44 @@ void Mode::MainMode() {
 
       // モード切り替え
       if (robot->info.mode == 0) {
-            robot->motor.Free();
+            // robot->motor.Free();
 
-            if (robot->info.Ui.dribbler_sig == 0) {
+            // if (robot->info.Ui.dribbler_sig == 0) {
+            //       robot->dribbler_front.Hold(0);
+            //       robot->dribbler_back.Hold(0);
+            // } else if (robot->info.Ui.dribbler_sig == 1) {
+            //       if (robot->info.Catch.is_front) {
+            //             robot->dribbler_front.Hold(HOLD_MAX_POWER);
+            //       } else {
+            //             robot->dribbler_front.Hold(HOLD_WAIT_POWER);
+            //       }
+            // } else if (robot->info.Ui.dribbler_sig == 2) {
+            //       robot->kicker.Kick();
+            // } else if (robot->info.Ui.dribbler_sig == 3) {
+            //       if (robot->info.Catch.is_back) {
+            //             robot->dribbler_back.Hold(HOLD_MAX_POWER);
+            //       } else {
+            //             robot->dribbler_back.Hold(HOLD_WAIT_POWER);
+            //       }
+            // }
+            if (robot->info.Esp32.Wifi.stop) {
+                  robot->motor.Free();
                   robot->dribbler_front.Hold(0);
-                  robot->dribbler_back.Hold(0);
-            } else if (robot->info.Ui.dribbler_sig == 1) {
-                  if (robot->info.Catch.is_front) {
-                        robot->dribbler_front.Hold(HOLD_MAX_POWER);
-                  } else {
-                        robot->dribbler_front.Hold(HOLD_WAIT_POWER);
+            } else {
+                  if (robot->info.Esp32.Wifi.face_axis == 0) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, CENTER);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 1) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, FRONT);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 2) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, BACK);
                   }
-            } else if (robot->info.Ui.dribbler_sig == 2) {
-                  robot->kicker.Kick();
-            } else if (robot->info.Ui.dribbler_sig == 3) {
-                  if (robot->info.Catch.is_back) {
-                        robot->dribbler_back.Hold(HOLD_MAX_POWER);
+                  if (robot->info.Esp32.Wifi.kick) {
+                        robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
+                  }
+                  if (robot->info.Esp32.Wifi.dribble) {
+                        robot->dribbler_front.Hold(robot->info.Esp32.Wifi.dribble);
                   } else {
-                        robot->dribbler_back.Hold(HOLD_WAIT_POWER);
+                        robot->dribbler_front.Hold(0);
                   }
             }
       } else if (robot->info.mode == 1) {

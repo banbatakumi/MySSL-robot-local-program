@@ -19,7 +19,7 @@ struct RobotInfo {
       float voltage;
       float motor_rad_s[4];
 
-      uint8_t mode;
+      uint8_t mode = 0;
 
       float target_move_speed, target_line_move_speed;
       struct {
@@ -107,7 +107,7 @@ struct RobotInfo {
                   uint8_t face_axis;
                   uint8_t kick;
                   uint8_t dribble;
-                  bool stop;
+                  bool stop = true;
                   int16_t vision_own_dir;
             } Wifi;
       } Esp32;
