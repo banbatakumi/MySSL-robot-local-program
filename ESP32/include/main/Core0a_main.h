@@ -6,18 +6,30 @@
 #define CORE0A_CONTROL_FREQ 250  // Hz
 
 // Wi-Fi 設定
-const char* ssid = "asus24";        // << ご自身のWi-Fi SSID に変更 >>
-const char* password = "19671202";  // << ご自身のWi-Fi パスワードに変更 >>
+const char* ssid = "MySSL-AP";
+const char* password = "20060210";
+
+#ifdef ROBOT_1
+IPAddress ip(192, 168, 2, 110);       // ESP32のIPアドレスを固定する場合のアドレス
+IPAddress subnet(255, 255, 255, 0);   // ESP32のIPアドレス固定する場合のサブネット
+IPAddress gateway(192, 168, 2, 251);  // ルーターのゲートウェイを入れる
 
 // UDP 設定
-// PC Controller から指令を受信するポート (robot_controller.py の COMMAND_SEND_PORT と同じ)
 const unsigned int commandListenPort = 50010;  // << robot_controller.py と同じにする >>
-// PC Controller へセンサーデータを送信するポート (robot_controller.py の SENSOR_LISTEN_PORT と同じ)
-const unsigned int sensorSendPort = 50011;  // << robot_controller.py と同じにする >>
+const unsigned int sensorSendPort = 50011;     // << robot_controller.py と同じにする >>
+#endif
+#ifdef ROBOT_2
+IPAddress ip(192, 168, 2, 111);       // ESP32のIPアドレスを固定する場合のアドレス
+IPAddress subnet(255, 255, 255, 0);   // ESP32のIPアドレス固定する場合のサブネット
+IPAddress gateway(192, 168, 2, 251);  // ルーターのゲートウェイを入れる
+
+// UDP 設定
+const unsigned int commandListenPort = 50012;  // << robot_controller.py と同じにする >>
+const unsigned int sensorSendPort = 50013;     // << robot_controller.py と同じにする >>
+#endif
 
 // PC Controller の IP アドレス
-// robot_controller.py が動作する PC のローカル IP アドレス
-const char* controllerIP = "192.168.50.86";  // << <-- ここを PC Controller の実際の IP アドレスに変更 >>
+const char* controllerIP = "192.168.2.100";  // << <-- ここを PC Controller の実際の IP アドレスに変更 >>
 // UDP オブジェクト
 WiFiUDP udp;
 
@@ -29,7 +41,8 @@ StaticJsonDocument<256> commandJsonDoc;  // 指令 JSON のバッファサイズ
 StaticJsonDocument<256> sensorJsonDoc;  // センサー JSON のバッファサイズに応じて調整
 char sensorPacket[256];                 // センサーデータの最大サイズに応じて調整
 
-void Core0a_setup() {  // アクセスポイントモード起動
+void Core0a_setup() {                    // アクセスポイントモード起動
+      WiFi.config(ip, gateway, subnet);  // IP固定の設定
       WiFi.begin(ssid, password);
       while (WiFi.status() != WL_CONNECTED) {
             delay(1000);
