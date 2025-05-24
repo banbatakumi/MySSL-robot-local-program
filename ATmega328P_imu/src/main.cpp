@@ -37,19 +37,19 @@ void setup() {
       // supply your own gyro offsets here, scaled for min sensitivity
 
       // robot1
-      // mpu.setXAccelOffset(-4503);
-      // mpu.setYAccelOffset(-4119);
-      // mpu.setZAccelOffset(1411);
-      // mpu.setXGyroOffset(98);
-      // mpu.setYGyroOffset(8);
-      // mpu.setZGyroOffset(-3);
+      mpu.setXAccelOffset(-3225);
+      mpu.setYAccelOffset(1777);
+      mpu.setZAccelOffset(1317);
+      mpu.setXGyroOffset(59);
+      mpu.setYGyroOffset(0);
+      mpu.setZGyroOffset(31);
       // robot2
-      mpu.setXAccelOffset(-7817);
-      mpu.setYAccelOffset(-1307);
-      mpu.setZAccelOffset(1107);
-      mpu.setXGyroOffset(1);
-      mpu.setYGyroOffset(26);
-      mpu.setZGyroOffset(11);
+      // mpu.setXAccelOffset(-7817);
+      // mpu.setYAccelOffset(-1307);
+      // mpu.setZAccelOffset(1107);
+      // mpu.setXGyroOffset(1);
+      // mpu.setYGyroOffset(26);
+      // mpu.setZGyroOffset(11);
 
       digitalWrite(LED_GREEN, LOW);
       if (devStatus == 0) {
