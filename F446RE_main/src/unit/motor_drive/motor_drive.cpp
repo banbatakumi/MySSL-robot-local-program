@@ -11,7 +11,7 @@ MotorDrive::MotorDrive(PwmSingleOut *motor1a, PwmSingleOut *motor1b,
       this->motor_abs_rad_s_ = motor_abs_rad_s;
       for (uint8_t i = 0; i < MOTOR_QTY; i++) {
             motor_ave[i].SetLength(MOVING_AVE_NUM);
-            motor_pid[i].SetGain(50, 100, 0.25);
+            motor_pid[i].SetGain(50, 250, 0.2);
             motor_pid[i].SetLimit(MIN_POWER, MAX_POWER);
             motor_pid[i].SetSamplingFreq(250);
             motor_pid[i].SetType(1);
