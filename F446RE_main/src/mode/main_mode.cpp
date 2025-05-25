@@ -59,27 +59,26 @@ void Mode::MainMode() {
             //       }
             // }
 
-            robot->motor.Drive(0, 0.2);
-            // if (robot->info.Esp32.Wifi.stop) {
-            //       robot->motor.Free();
-            //       robot->dribbler_front.Hold(0);
-            // } else {
-            //       if (robot->info.Esp32.Wifi.face_axis == 0) {
-            //             robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, CENTER);
-            //       } else if (robot->info.Esp32.Wifi.face_axis == 1) {
-            //             robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, FRONT);
-            //       } else if (robot->info.Esp32.Wifi.face_axis == 2) {
-            //             robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, BACK);
-            //       }
-            //       if (robot->info.Esp32.Wifi.kick) {
-            //             robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
-            //       }
-            //       if (robot->info.Esp32.Wifi.dribble) {
-            //             robot->dribbler_front.Hold(robot->info.Esp32.Wifi.dribble);
-            //       } else {
-            //             robot->dribbler_front.Hold(0);
-            //       }
-            // }
+            if (robot->info.Esp32.Wifi.stop) {
+                  robot->motor.Free();
+                  robot->dribbler_front.Hold(0);
+            } else {
+                  if (robot->info.Esp32.Wifi.face_axis == 0) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, CENTER);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 1) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, FRONT);
+                  } else if (robot->info.Esp32.Wifi.face_axis == 2) {
+                        robot->motor.Drive(robot->info.Esp32.Wifi.move_dir, robot->info.Esp32.Wifi.move_speed, robot->info.Esp32.Wifi.move_acce, robot->info.Esp32.Wifi.face_angle, robot->info.Esp32.Wifi.face_speed, BACK);
+                  }
+                  if (robot->info.Esp32.Wifi.kick) {
+                        robot->kicker.Kick(robot->info.Esp32.Wifi.kick * 0.01);
+                  }
+                  if (robot->info.Esp32.Wifi.dribble) {
+                        robot->dribbler_front.Hold(robot->info.Esp32.Wifi.dribble);
+                  } else {
+                        robot->dribbler_front.Hold(0);
+                  }
+            }
       } else if (robot->info.mode == 1) {
             Offence();
       } else if (robot->info.mode == 2) {
