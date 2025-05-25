@@ -14,7 +14,7 @@
 #include "pid.h"
 #include "simplify_deg.h"
 
-#define ROBOT_2
+#define ROBOT_1
 
 // ピン定義
 const uint8_t led_pin = 23;
